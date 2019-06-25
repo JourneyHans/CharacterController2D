@@ -20,15 +20,15 @@ public class CharacterController2D : MonoBehaviour
 
     void Start()
     {
-//        if (Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")))
-//        {
-//            string colliderName = Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")).collider.gameObject.name;
-//            Debug.Log("Collider " + colliderName + " is under the CubeUp");
-//        }
-//        else
-//        {
-//            Debug.Log("No collider is under the CubeUp");
-//        }
+        if (Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")))
+        {
+            string colliderName = Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")).collider.gameObject.name;
+            Debug.Log("Collider " + colliderName + " is under the CubeUp");
+        }
+        else
+        {
+            Debug.Log("No collider is under the CubeUp");
+        }
     }
 
     void Update()
