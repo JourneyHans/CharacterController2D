@@ -16,9 +16,17 @@ public class CastTest : MonoBehaviour
 
     private Rigidbody2D _rigidBody;
     private RaycastHit2D[] _hits = new RaycastHit2D[16];
+    private ContactFilter2D _contactFilter;
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _contactFilter.useTriggers = false;
+        _contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+
+        Debug.Log("gameObject layer: " + gameObject.layer);
+        Debug.Log("Physics2D.GetLayerCollisionMask(gameObject.layer): " + Physics2D.GetLayerCollisionMask(gameObject.layer));
+
+        _contactFilter.useLayerMask = true;
     }
 
     void FixedUpdate()
@@ -30,9 +38,10 @@ public class CastTest : MonoBehaviour
         if (CurrentCastType == CastType.Physics2D)
         {
             Debug.DrawLine(transform.position, transform.position + inputDir * maxSpeed, Color.green);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, inputDir, maxSpeed);
-            if (hit)
+            int count = Physics2D.Raycast(transform.position, inputDir, _contactFilter, _hits, maxSpeed);
+            for (int i = 0; i < count; i++)
             {
+                RaycastHit2D hit = _hits[i];
                 Debug.Log("hit something: " + hit.collider.name);
             }
         }

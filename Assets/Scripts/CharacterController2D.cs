@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] private float xSpeed;      // 水平方向速度
-    [SerializeField] private float gravity;         // 重力
+    [SerializeField] private float gravity;     // 重力
 
     private SpriteRenderer _sprite;
     private Rigidbody2D _rigidbody;
