@@ -34,8 +34,14 @@ public class CharacterController2D : MonoBehaviour
         Vector2 currentPos = _rigidbody.position;
 
         // 处理水平方向
-        int xInput = (int)Input.GetAxisRaw("Horizontal");
+        float xInput = Input.GetAxisRaw("Horizontal");
         velocity.x = xInput * xSpeed;
+
+        // 处理转向
+        HandleTurn((int) xInput);
+
+//        // 处理横向的碰撞
+//        Debug.DrawLine(_rigidbody.position, )
 
         // 处理垂直方向
         velocity.y = -gravity;
@@ -50,9 +56,6 @@ public class CharacterController2D : MonoBehaviour
         // 最终位置
         Vector2 result = velocity * Time.deltaTime + currentPos;
 
-        // 处理转向
-        HandleTurn(xInput);
-
         _rigidbody.MovePosition(result);
 //        transform.Translate(result);
     }
@@ -65,4 +68,11 @@ public class CharacterController2D : MonoBehaviour
             _sprite.flipX = direction < 0;
         }
     }
+
+#if UNITY_EDITOR
+    private void DrawLine()
+    {
+
+    }
+#endif
 }
