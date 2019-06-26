@@ -20,15 +20,7 @@ public class CharacterController2D : MonoBehaviour
 
     void Start()
     {
-        if (Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")))
-        {
-            string colliderName = Physics2D.Raycast(this.transform.position, Vector2.down, 10.0f, 1 << LayerMask.NameToLayer("Collider")).collider.gameObject.name;
-            Debug.Log("Collider " + colliderName + " is under the CubeUp");
-        }
-        else
-        {
-            Debug.Log("No collider is under the CubeUp");
-        }
+
     }
 
     void Update()
@@ -48,12 +40,12 @@ public class CharacterController2D : MonoBehaviour
         // 处理垂直方向
         velocity.y = -gravity;
 
-//        Debug.DrawLine(_rigidbody.position, _rigidbody.position + new Vector2(0, -1f) * 1f, Color.blue);
-//        RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Platform"));
-//        if (hit)
-//        {
-//            Debug.Log("Collider: " + hit.collider.name);
-//        }
+        Debug.DrawLine(_rigidbody.position, _rigidbody.position + new Vector2(0, -1f) * 1f, Color.blue);
+        RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Platform"));
+        if (hit)
+        {
+            Debug.Log("Collider: " + hit.collider.name);
+        }
 
         // 最终位置
         Vector2 result = velocity * Time.deltaTime + currentPos;
